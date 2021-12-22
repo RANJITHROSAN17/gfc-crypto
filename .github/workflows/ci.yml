@@ -7,26 +7,8 @@ on:
   push:
     branches:
       - main
+    tags: [v*]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        java: [ '8', '11', '16' ]
-    steps:
-    - uses: actions/checkout@v2
-    - name: Set up JDK
-      uses: actions/setup-java@v1
-      with:
-        java-version: ${{ matrix.java }}
-    - name: print Java version
-      run: java -version
-    - name: Run tests
-      run: sbt clean +coverage +test +coverageReport
-    - name: Aggregate coverage
-      run: sbt +coverageAggregate
-    - name: Coveralls publish
-      run: sbt +coveralls
-      env:
-        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+    uses: gfc-collective/gfc-gh-actions-shared/.github/workflows/ci-scala-library.yml@main
