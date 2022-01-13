@@ -2,7 +2,7 @@ name := "gfc-crypto"
 
 organization := "org.gfccollective"
 
-scalaVersion := "2.13.7"
+scalaVersion := "2.13.8"
 
 crossScalaVersions := Seq(scalaVersion.value, "2.12.15", "3.1.0")
 
